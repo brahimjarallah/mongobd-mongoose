@@ -3,26 +3,22 @@ require("dotenv").config()
 //add mongodb and mongoose to package.json
 //store atlas URI atlas cloud database to .env file
 //connect to database using this syntax --> mongoose.connect(<Your URI>, { useNewUrlParser: true, useUnifiedTopology: true });
-const mongoose = require("mongoose")
+let mongoose = require("mongoose")
 
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
 
-const Schema = mongoose.Schema
-
-//create a personSchema
+let Schema = mongoose.Schema
 let personSchema = new Schema({
   name: { type: String, required: true },
   age: Number,
-  favoriteFood: [String],
+  favoriteFoods: [String],
 })
 
-// creating a model
-const Person = mongoose.model("Person", personSchema)
+let Person = mongoose.model("Person", personSchema)
 
-//instantiating Schema for a sample person
 const brahim = new Person({
   name: "brahim jarallah",
   age: 32,
