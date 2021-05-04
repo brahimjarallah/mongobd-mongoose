@@ -20,11 +20,13 @@ let personSchema = new Schema({
 const Person = mongoose.model("Person", personSchema)
 
 //instantiating Schema for a sample person
-const brahim = new Person({
-  name: "brahim jarallah",
-  age: 32,
-  favoriteFood: ["Pizza", "Spaghetti"],
-})
+const PersonModel = (Person) => {
+  new Person({
+    name: "brahim jarallah",
+    age: 32,
+    favoriteFood: ["Pizza", "Spaghetti"],
+  })
+}
 
 const createAndSavePerson = (done) => {
   done(null /*, data*/)
