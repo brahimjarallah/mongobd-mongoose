@@ -26,7 +26,13 @@ const brahim = new Person({
 })
 
 const createAndSavePerson = (done) => {
-  done(null /*, data*/)
+  brahim.save((err, data) => {
+    if (err) {
+      console.log(err)
+    } else {
+      done(null, data)
+    }
+  })
 }
 
 const createManyPeople = (arrayOfPeople, done) => {
