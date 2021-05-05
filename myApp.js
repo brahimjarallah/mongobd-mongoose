@@ -40,14 +40,17 @@ const createAndSavePerson = (done) => {
 
 // Create Many Records with model.create()
 
-const arrayOfPeople = [
-  { name: "Brahim", age: 32, favoriteFood: ["pizza", "spaghetti"] },
-  { name: "clara", age: 32, favoriteFood: ["pizza", "hamburger"] },
-]
-const createManyPeople = (arrayOfPeople, people) => {
-  Person.create(arrayOfPeople, (err, people) => {
-    if (err) console.log(err)
-    done(null, people)
+// const arrayOfPeople = [
+//   { name: "Brahim", age: 32, favoriteFood: ["pizza", "spaghetti"] },
+//   { name: "clara", age: 32, favoriteFood: ["pizza", "hamburger"] },
+// ]
+const createManyPeople = (arrayOfPeople, data) => {
+  Person.create(arrayOfPeople, (err, data) => {
+    if (err) {
+      console.log(err)
+    } else {
+      done(null, people)
+    }
   })
 }
 
