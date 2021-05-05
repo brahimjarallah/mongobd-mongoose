@@ -5,11 +5,14 @@ require("dotenv").config()
 //connect to database using this syntax --> mongoose.connect(<Your URI>, { useNewUrlParser: true, useUnifiedTopology: true });
 let mongoose = require("mongoose")
 
+// Install and Set Up Mongoose
+
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
 
+// Create a Model
 let Schema = mongoose.Schema
 let personSchema = new Schema({
   name: { type: String, required: true },
@@ -19,6 +22,7 @@ let personSchema = new Schema({
 
 let Person = mongoose.model("Person", personSchema)
 
+// Create and Save a Record of a Model
 const brahim = new Person({
   name: "brahim jarallah",
   age: 32,
@@ -34,6 +38,8 @@ const createAndSavePerson = (done) => {
     }
   })
 }
+
+// Create Many Records with model.create()
 
 var arrayOfPeople = [
   {
@@ -56,9 +62,14 @@ var createManyPeople = function (arrayOfPeople, done) {
     done(null, people)
   })
 }
+// Use model.find() to Search Your Database
 
 const findPeopleByName = (personName, done) => {
   done(null /*, data*/)
+  Person.find({ name: personName }, (err, peopleFound) => {
+    if (err) return console.log(err)
+    done(null, peopleFound)
+  })
 }
 
 const findOneByFood = (food, done) => {
