@@ -74,17 +74,16 @@ const findPeopleByName = (personName, done) => {
   })
 }
 
+// Use model.findOne() to Return a Single Matching Document from Your Database
 const findOneByFood = (food, done) => {
-  done(null /*, data*/)
+  Person.findOne({ favoriteFood: food }, (err, onePeopleFoodLover) => {
+    if (err) console.log(err)
+    done(null, onePeopleFoodLover)
+  })
 }
 
 const findPersonById = (personId, done) => {
-  // await Adventure.findOne({ country: 'Croatia' }).exec();
-
-  Person.findOne({ favoriteFood: "pizza" }, (err, onePeopleLoveFood) => {
-    if (err) console.log(err)
-    done(null, onePeopleLoveFood)
-  })
+  done(null /*, data*/)
 }
 
 const findEditThenSave = (personId, done) => {
