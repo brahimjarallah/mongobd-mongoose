@@ -49,11 +49,11 @@ var arrayOfPeople = [
 ]
 
 var createManyPeople = function (arrayOfPeople, done) {
-  Person.create(arrayOfPeople, (people, err) => {
+  Person.create(arrayOfPeople, (err, people) => {
     if (err) {
-      return done(err)
+      return console.log(err)
     }
-    return done(null, people)
+    done(null, people)
   })
 }
 
