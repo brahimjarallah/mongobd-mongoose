@@ -3,16 +3,15 @@ require("dotenv").config()
 //add mongodb and mongoose to package.json
 //store atlas URI atlas cloud database to .env file
 //connect to database using this syntax --> mongoose.connect(<Your URI>, { useNewUrlParser: true, useUnifiedTopology: true });
-const mongoose = require("mongoose")
+let mongoose = require("mongoose")
 
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
 
-// Create a Model
-const Schema = mongoose.Schema
-const personSchema = new Schema({
+let Schema = mongoose.Schema
+let personSchema = new Schema({
   name: { type: String, required: true },
   age: Number,
   favoriteFoods: [String],
@@ -26,8 +25,6 @@ const brahim = new Person({
   favoriteFood: ["Pizza", "Spaghetti"],
 })
 
-// Create and Save a Record of a Model
-
 const createAndSavePerson = (done) => {
   brahim.save((err, data) => {
     if (err) {
@@ -38,14 +35,12 @@ const createAndSavePerson = (done) => {
   })
 }
 
-// Create Many Records with model.create()
-
-// const arrayOfPeople = [
-//   { name: "Brahim", age: 32, favoriteFood: ["pizza", "spaghetti"] },
-//   { name: "clara", age: 32, favoriteFood: ["pizza", "hamburger"] },
-// ]
-const createManyPeople = (arrayOfPeople, data) => {
-  Person.create(arrayOfPeople, (err, data) => {
+const arrayOfPeople = [
+  { name: "Brahim", age: 32, favoriteFood: ["pizza", "spaghetti"] },
+  { name: "clara", age: 32, favoriteFood: ["pizza", "hamburger"] },
+]
+const createManyPeople = (arrayOfPeople, people) => {
+  Person.create(arrayOfPeople, (err, people) => {
     if (err) {
       console.log(err)
     } else {
@@ -53,7 +48,6 @@ const createManyPeople = (arrayOfPeople, data) => {
     }
   })
 }
-
 const findPeopleByName = (personName, done) => {
   done(null /*, data*/)
 }
