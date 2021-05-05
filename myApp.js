@@ -79,7 +79,12 @@ const findOneByFood = (food, done) => {
 }
 
 const findPersonById = (personId, done) => {
-  done(null /*, data*/)
+  // await Adventure.findOne({ country: 'Croatia' }).exec();
+
+  Person.findOne({ favoriteFood: "pizza" }, (err, onePeopleLoveFood) => {
+    if (err) console.log(err)
+    done(null, onePeopleLoveFood)
+  })
 }
 
 const findEditThenSave = (personId, done) => {
