@@ -48,7 +48,7 @@ var arrayOfPeople = [
   },
 ]
 
-var createManyPeople = function (arrayOfPeople, people) {
+var createManyPeople = function (arrayOfPeople, done) {
   Person.create(arrayOfPeople, (people, err) => {
     if (err) {
       return done(err)
