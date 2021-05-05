@@ -48,12 +48,12 @@ var arrayOfPeople = [
   },
 ]
 
-var createManyPeople = function (arrayOfPeople, done) {
-  Person.create(arrayOfPeople, (data, err) => {
+var createManyPeople = function (arrayOfPeople, people) {
+  Person.create(arrayOfPeople, (people, err) => {
     if (err) {
       return done(err)
     }
-    return done(null, data)
+    return done(null, people)
   })
 }
 
