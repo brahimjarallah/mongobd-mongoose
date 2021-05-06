@@ -6,7 +6,6 @@ require("dotenv").config()
 let mongoose = require("mongoose")
 
 // Install and Set Up Mongoose
-
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -40,7 +39,6 @@ const createAndSavePerson = (done) => {
 }
 
 // Create Many Records with model.create()
-
 var arrayOfPeople = [
   {
     name: "JImmy",
@@ -62,8 +60,8 @@ var createManyPeople = function (arrayOfPeople, done) {
     done(null, people)
   })
 }
-// Use model.find() to Search Your Database
 
+// Use model.find() to Search Your Database
 const findPeopleByName = (personName, done) => {
   Person.find({ name: personName }, (err, peopleFound) => {
     if (err) {
@@ -81,8 +79,8 @@ const findOneByFood = (food, done) => {
     done(null, onePeopleFoodLover)
   })
 }
-// Use model.findById() to Search Your Database By _id
 
+// Use model.findById() to Search Your Database By _id
 const findPersonById = (personId, done) => {
   Person.findById(personId, (err, peopleFoundById) => {
     if (err) return console.log(err)
@@ -90,10 +88,17 @@ const findPersonById = (personId, done) => {
   })
 }
 
+// Perform Classic Updates by Running Find, Edit, then Save
 const findEditThenSave = (personId, done) => {
   const foodToAdd = "hamburger"
-
-  done(null /*, data*/)
+  Person.findById(personId, (err, personUpd) => {
+    if (err) return console.log(err)
+    personUpd.favoriteFoods.push(foodToAdd)
+    personUpd.save((err, data) => {
+      if (err) return console.log(err)
+      done(null, data)
+    })
+  })
 }
 
 const findAndUpdate = (personName, done) => {
