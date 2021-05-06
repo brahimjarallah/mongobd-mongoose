@@ -120,7 +120,7 @@ const findAndUpdate = (personName, done) => {
 
 // Delete One Document Using model.findByIdAndRemove
 const removeById = (personId, done) => {
-  Person.findAndremoveById(personId, (err, personRemoved) => {
+  Person.findByIdAndRemove(personId, (err, personRemoved) => {
     if (err) return console.log(err)
     done(null, personRemoved)
   })
